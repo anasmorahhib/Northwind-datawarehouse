@@ -1,0 +1,69 @@
+=== Run information ===
+
+Scheme:
+	LinearRegression -S 0 -R 1.0E-8 -num-decimal-places 4
+
+Lagged and derived variable options:
+	-F AliceMutton,AniseedSyrup,Chai -L 1 -M 1 -G year
+
+Relation:     sales
+Instances:    3
+Attributes:   9
+              year
+              AliceMutton
+              AniseedSyrup
+              BostonCrabMeat
+              CamembertPierrot
+              CarnarvonTigers
+              Chai
+              Chang
+              Chartreuseverte
+
+Transformed training data:
+
+              year
+              AliceMutton
+              AniseedSyrup
+              Chai
+              Lag_AliceMutton-1
+              Lag_AniseedSyrup-1
+              Lag_Chai-1
+              year^2
+              year^3
+              year*Lag_AliceMutton-1
+              year*Lag_AniseedSyrup-1
+              year*Lag_Chai-1
+
+AliceMutton:
+
+Linear Regression Model
+
+AliceMutton =
+
+ +
+  11804.6667
+
+AniseedSyrup:
+
+Linear Regression Model
+
+AniseedSyrup =
+
+ +
+   1026.6667
+
+Chai:
+
+Linear Regression Model
+
+Chai =
+
+ +
+   4736     
+
+=== Future predictions from end of training data ===
+inst#       AliceMutton AniseedSyrup         Chai 
+1996               7254          240         1750 
+1997              19697         1760         5276 
+1998               8463         1080         7182 
+1999*        11804.6667    1026.6667         4736 

@@ -1,0 +1,17 @@
+@relation sales
+
+@attribute year numeric
+@attribute AliceMutton numeric
+@attribute AniseedSyrup	numeric
+@attribute BostonCrabMeat numeric	
+@attribute CamembertPierrot numeric
+@attribute CarnarvonTigers numeric
+@attribute Chai numeric
+@attribute Chang numeric
+@attribute Chartreuseverte numeric
+
+@data
+
+1996,7254,240,3060,9990,5300,1750,3390,3724
+1997,19697,1760,10329,21770,17376,5276,7565,4910
+1998,8463,1080,5454,18428,9513,7182,7524,4392

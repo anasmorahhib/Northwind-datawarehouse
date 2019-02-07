@@ -1,0 +1,68 @@
+<Schema name="Sales Schema">
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="Date">
+    <Hierarchy name="Time" visible="true" hasAll="true" primaryKey="date_sk">
+      <Table name="date_dim">
+      </Table>
+      <Level name="Year" visible="true" column="year" type="String" uniqueMembers="true" levelType="TimeYears" hideMemberIf="Never">
+      </Level>
+      <Level name="Month" visible="true" column="month" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+      </Level>
+      <Level name="Day" visible="true" column="day" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Customer">
+    <Hierarchy name="customer" visible="true" hasAll="true" primaryKey="customer_sk">
+      <Table name="customers_dim">
+      </Table>
+      <Level name="Company Name" visible="true" column="Company_Name" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Contact Name" visible="true" column="Contact_Name" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Contact Title" visible="true" column="Contact_Title" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Addres" visible="true" column="Address" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Location">
+    <Hierarchy name="location" visible="true" hasAll="true" primaryKey="location_sk">
+      <Table name="location_dim">
+      </Table>
+      <Level name="Country" visible="true" column="Country" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="City" visible="true" column="City" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Product">
+    <Hierarchy name="product" visible="true" hasAll="true" primaryKey="product_sk">
+      <Table name="products_dim">
+      </Table>
+      <Level name="Product Name" visible="true" column="ProductName" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Unit Price" visible="true" column="UnitPrice" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Unit Stock" visible="true" column="unitsInStock" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Unit On Order" visible="true" column="unitsOnOrder" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Sales Fact" visible="true" cache="true" enabled="true">
+    <Table name="sales_fact">
+    </Table>
+    <DimensionUsage source="Date" name="Date" visible="true" foreignKey="date_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Customer" name="Customer" visible="true" foreignKey="customer_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Location" name="Location" visible="true" foreignKey="location_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Product" name="Product" visible="true" foreignKey="product_id" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Revenue" column="revenue" formatString="Currency" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="Quantity" column="quantity" aggregator="sum" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
